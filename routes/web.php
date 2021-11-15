@@ -29,6 +29,8 @@ Route::get('/api', 'testApi@testApi');
     Route::post('account-settings', 'UsersController@saveSettings');
     Route::get('get-states-by-select-country/{country_id?}', 'UsersController@getStates');
     Route::get('get-cities-by-select-state/{state_id?}', 'UsersController@getCities');
+    // Route::get('get-states/{country_id?}', 'Customer/CustomerController@getState');
+    // Route::get('get-cities/{state_id?}', 'CustomerController@getCitie');
     
     
 });
@@ -439,3 +441,4 @@ Route::resource('course', 'CourseController\\CourseController');
 Route::resource('chapter', 'ChapterController\\ChapterController');
 Route::resource('class', 'ClassController\\ClassController');
 Route::resource('topic', 'TopicController\\TopicController');
+Route::resource('customer/customer', 'Customer\\CustomerController');

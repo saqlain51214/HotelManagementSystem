@@ -28,4 +28,7 @@ class City extends Model
      * @var array
      */
     // protected $fillable = ['title', 'description', 'image'];
+    public function state(){
+    	return $this->belongsTo(State::class,'id');
+    }
 }

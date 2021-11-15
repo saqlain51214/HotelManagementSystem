@@ -49,7 +49,7 @@
                 </li>
                 <li class="two-column">
                     <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><i
-                            class="icon-user fa-fw"></i> <span class="hide-menu"> Users</span></a>
+                            class="icon-user fa-fw"></i> <span class="hide-menu"> Staff</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{asset('users')}}">Manage Users</a></li>
                         <li><a href="{{asset('user/create')}}">Add New User</a></li>
@@ -66,12 +66,12 @@
 
 
                    
-                    {{-- <li>
+                    <li>
                         <a class="waves-effect" href="{{asset('crud-generator')}}">
                               <i class="icon-drawar fa-fw"></i>
                               <span class="hide-menu"> CRUD GENERATOR </span>
                         </a>
-                    </li> --}}
+                    </li>
 
 
 

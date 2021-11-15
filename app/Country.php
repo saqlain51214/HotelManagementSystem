@@ -28,4 +28,9 @@ class Country extends Model
      * @var array
      */
     // protected $fillable = ['title', 'description', 'image'];
+    public function state(){
+    	return $this->hasMany(State::class,'country_id');
+    }
+
+
 }
