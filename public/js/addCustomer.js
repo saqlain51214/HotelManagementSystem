@@ -272,7 +272,7 @@ $("#commentForm").keypress(function(event) {
 });
 
 $(document).ready(function() {
-    $("#cell_number_old").intlTelInput({});
+    // $("#cell_number_old").intlTelInput({});
 
     $(".iti").attr("style", "display: block !important");
 

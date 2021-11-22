@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,7 @@ Route::get('/api', 'testApi@testApi');
     Route::post('account-settings', 'UsersController@saveSettings');
     Route::get('get-states-by-select-country/{country_id?}', 'UsersController@getStates');
     Route::get('get-cities-by-select-state/{state_id?}', 'UsersController@getCities');
+    Route::get('delete-customer/{id?}', 'Customer\CustomerController@deleteCustomer');
     // Route::get('get-states/{country_id?}', 'Customer/CustomerController@getState');
     // Route::get('get-cities/{state_id?}', 'CustomerController@getCitie');
     
@@ -442,3 +444,9 @@ Route::resource('chapter', 'ChapterController\\ChapterController');
 Route::resource('class', 'ClassController\\ClassController');
 Route::resource('topic', 'TopicController\\TopicController');
 Route::resource('customer/customer', 'Customer\\CustomerController');
+
+// routes for romm type
+Route::resource('roomcategory/room-category', 'RoomCategory\\RoomCategoryController');
+Route::get('room-status-change/', 'RoomCategory\\RoomCategoryController@roomStatus');
+Route::get('delete-room-type/{id?}', 'RoomCategory\\RoomCategoryController@deleteRoom');
+

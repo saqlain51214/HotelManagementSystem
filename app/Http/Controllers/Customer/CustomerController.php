@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Customer;
 use App\Country;
 use App\State;
@@ -53,7 +52,7 @@ class CustomerController extends Controller
                 ->orWhere('next_destination', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
             } else {
-                $customer = Customer::paginate($perPage);
+                $customer = Customer::orderBy('id', 'DESC')->paginate($perPage);
             }
 
             return view('customer.customer.index', compact('customer'));
@@ -87,7 +86,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-       
+     
         $model = str_slug('customer','-');
         if(auth()->user()->permissions()->where('name','=','add-'.$model)->first()!= null) {
             
@@ -111,7 +110,7 @@ class CustomerController extends Controller
     {
         $model = str_slug('customer','-');
         if(auth()->user()->permissions()->where('name','=','view-'.$model)->first()!= null) {
-            $customer = Customer::findOrFail($id);
+            $customer = Customer::with('Country','State','City')->findOrFail($id);
             return view('customer.customer.show', compact('customer'));
         }
         return response(view('403'), 403);
@@ -126,11 +125,13 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
+
         $action = 'EDIT';
         $countries = Country::all();
         $model = str_slug('customer','-');
         if(auth()->user()->permissions()->where('name','=','edit-'.$model)->first()!= null) {
             $customer = Customer::findOrFail($id);
+         
             return view('customer.customer.edit', compact('customer','countries','action'));
         }
         return response(view('403'), 403);
@@ -146,8 +147,8 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
        
+      
         $model = str_slug('customer','-');
         if(auth()->user()->permissions()->where('name','=','edit-'.$model)->first()!= null) {
             
@@ -200,8 +201,25 @@ class CustomerController extends Controller
             Session::flash('message','Something went wrong! Please refresh the page');
         }else{
             $states = City::where('state_id',$state_id)->get();
-            dd($states);
+           
             echo $states;
         }
+    }
+
+    public function deleteCustomer( $id = null)
+    {
+
+        if($id){
+            Customer::destroy($id);
+            $success = true;
+            $message = "Customer deleted successfully";
+        }else{
+            $success = true;
+            $message = "User not found";
+        }
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
     }
 }

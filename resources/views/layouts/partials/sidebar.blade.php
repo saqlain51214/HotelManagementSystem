@@ -95,6 +95,7 @@
                     </li> --}}
 
                     @endif
+                    
                     @foreach($laravelAdminMenus->menus as $section)
                         @if(count(collect($section->items)) > 0)
                             @foreach($section->items as $menu)
@@ -109,7 +110,11 @@
                                         @else
                                             <a class="waves-effect"  href="{{url($menu->url)}} ">
                                                 <i class="glyphicon {{$menu->icon}} fa-fw"></i>
+                                                @if($menu->title == 'RoomCategory')
+                                                <span class="hide-menu"> Room Type </span>
+                                                @else
                                                 <span class="hide-menu"> {{ $menu->title }}</span>
+                                                @endif
                                             </a>
                                         @endif
 

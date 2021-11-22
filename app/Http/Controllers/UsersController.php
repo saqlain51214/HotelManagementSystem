@@ -6,6 +6,7 @@ use App\Profile;
 use App\Role;
 use App\Country;
 use App\State;
+use App\Customer;
 use App\City;
 use App\User;
 use Carbon\Carbon;
@@ -278,11 +279,15 @@ class UsersController extends Controller
 
     
     public function getStates($country_id=null){
+        $detail = array();
         if($country_id == null){
             Session::flash('message','Something went wrong! Please refresh the page');
         }else{
             $states = State::where('country_id',$country_id)->get();
-            echo $states;
+            $country = Country::where('id',$country_id)->first();
+            $detail['country'] = $country;
+            $detail['states'] = $states;
+            return $detail;
         }
     }
 
@@ -294,5 +299,7 @@ class UsersController extends Controller
             echo $states;
         }
     }
+
+
 
 }

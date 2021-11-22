@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Country extends Model
+class RoomCategory extends Model
 {
     use SoftDeletes;
     /**
@@ -13,7 +13,7 @@ class Country extends Model
      *
      * @var string
      */
-    protected $table = 'countries';
+    protected $table = 'room_categories';
 
     /**
     * The database primary key value.
@@ -27,14 +27,7 @@ class Country extends Model
      *
      * @var array
      */
-    // protected $fillable = ['title', 'description', 'image'];
-    public function state(){
-    	return $this->hasMany(State::class,'country_id');
-    }
+    protected $fillable = ['room_type','price', 'description','total_bed','extra_bed', 'slug', 'status'];
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
-
+    
 }

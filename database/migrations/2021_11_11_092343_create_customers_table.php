@@ -23,6 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('country')->nullable();
             $table->string('province')->nullable();
             $table->string('city')->nullable();
+            $table->string('phone_code')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('cell_number')->nullable();
             $table->string('cnic')->nullable();
